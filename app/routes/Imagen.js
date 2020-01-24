@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Imagen_1 = require("./../controllers/Imagen");
+const express_1 = require("express");
+exports.imagen_router = express_1.Router();
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart({ uploadDir: './images' });
+exports.imagen_router.post('/imagen/upload', multipartMiddleware, Imagen_1.subirArchivo);
+exports.imagen_router.delete('/imagen/:id_img', Imagen_1.eliminarImagen);
+exports.imagen_router.get('/imagen/:id_img', Imagen_1.getImagenById);
+exports.imagen_router.put('/imagen/:id_img', multipartMiddleware, Imagen_1.updateImagenById);
